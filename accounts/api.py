@@ -5,8 +5,10 @@ from rest_framework.views import APIView
 from .models import User
 from .serializers import RegisterSerializer, UserSerializer, TokenSerializer
 from rest_framework.authtoken.models import Token
+from rest_framework.permissions import AllowAny
 
 @api_view(['POST',])
+@permission_classes([AllowAny],)
 def registration_view(request):
 
     if request.method == 'POST':
@@ -71,3 +73,5 @@ class UserDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+

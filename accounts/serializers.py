@@ -24,7 +24,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     def save(self):
         account = User(
             email=self.validated_data['email'],
-            username=self.validated_data['username']
+            username=self.validated_data['username'],
+            is_agent=self.validated_data['is_agent']
         )
 
         password=self.validated_data['password']
@@ -41,7 +42,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ['username', 'is_agent', 'first_name', 'last_name', 'saved_agents', 'id']
+        fields = ['username', 'is_agent', 'first_name', 'last_name', 'saved_agents', 'id', 'email']
 
 class TokenSerializer(serializers.ModelSerializer):
     
